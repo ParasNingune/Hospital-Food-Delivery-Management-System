@@ -5,7 +5,7 @@ const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const patientRoutes = require("./routes/patientRoutes");
 const dietChartRoutes = require("./routes/dietChartRoutes");
-
+const deliveryRoutes = require("./routes/deliveryRoutes"); // Add this import
 require("dotenv").config();
 
 const app = express();
@@ -21,6 +21,7 @@ connectDB();
 app.use("/api/auth", authRoutes);
 app.use("/api/patients", patientRoutes);
 app.use("/api/diet-charts", dietChartRoutes);
+app.use("/api/deliveries", deliveryRoutes); // Add this line to use the delivery routes
 
 app.get("/", (req, res) => {
   res.send("Welcome to Hospital Food Delivery Management API!");
