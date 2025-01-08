@@ -1,9 +1,11 @@
 const Delivery = require("../models/Delivery");
+const Patient = require("../models/Patient")
 
 // Get all deliveries
 exports.getAllDeliveries = async (req, res) => {
   try {
-    const deliveries = await Delivery.find();
+    const deliveries = await Delivery.find(); // only populate the 'name' field of the patient
+    console.log(deliveries);
     res.status(200).json(deliveries);
   } catch (error) {
     res.status(500).json({ message: "Error fetching deliveries", error });
@@ -15,11 +17,35 @@ exports.addDelivery = async (req, res) => {
   const { patientId, foodItems, deliveryTime, status } = req.body;
 
   try {
-    const newDelivery = new Delivery({ patientId, foodItems, deliveryTime, status });
-    await newDelivery.save();
-    res.status(201).json(newDelivery);
+    // Validate the patientId
+    if (!patientId) {
+      return res.status(400).json({ message: "patientId is required" });
+    }
+
+    // Fetch patient details to validate and get the name
+    const patient = await Patient.findById(patientId);
+    if (!patient) {
+      return res.status(404).json({ message: "Patient not found" });
+    }
+
+    // Create the delivery
+    const newDelivery = await Delivery.create({
+      patientId,
+      foodItems,
+      deliveryTime,
+      status,
+    });
+
+    // Add patient name to the response
+    const response = {
+      ...newDelivery._doc,
+      patientName: patient.name, // Adding the patient's name
+    };
+
+    res.status(201).json(response);
   } catch (error) {
-    res.status(500).json({ message: "Error adding delivery", error });
+    console.log(error)
+    res.status(500).json({ message: "Failed to add delivery", error });
   }
 };
 

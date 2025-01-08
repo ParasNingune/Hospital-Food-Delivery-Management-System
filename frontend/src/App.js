@@ -5,6 +5,8 @@ import DeliveryDashboard from "./components/DeliveryDashboard";
 import PantryDashboard from "./components/PantryDashboard";
 import { ChakraProvider } from "@chakra-ui/react";
 import LoginRegister from "./components/LoginRegister";
+import UsersPage from "./components/admin/UsersPage";
+import OrdersPage from "./components/admin/OrdersPage"
 
 const App = () => {
   return (
@@ -15,6 +17,8 @@ const App = () => {
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/delivery-dashboard" element={<DeliveryDashboard />} />
           <Route path="/pantry-dashboard" element={<PantryDashboard />} />
+          <Route path="/users" element={<UsersPage />} />
+          <Route path="/orders" element={<OrdersPage /> } />
         </Routes>
       </Router>
     </ChakraProvider>

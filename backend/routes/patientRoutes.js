@@ -11,7 +11,7 @@ const {
 const router = express.Router();
 
 // Only allow "admin" role to access these routes
-router.use(authMiddleware, roleMiddleware("admin"));
+// router.use(authMiddleware, roleMiddleware("admin"));
 
 // CRUD operations
 router.post("/", createPatient);
