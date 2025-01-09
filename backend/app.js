@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const patientRoutes = require("./routes/patientRoutes");
-const dietChartRoutes = require("./routes/dietChartRoutes");
 const deliveryRoutes = require("./routes/deliveryRoutes");
 const userRoutes = require('./routes/userRoutes');
 require("dotenv").config();
@@ -21,7 +20,6 @@ connectDB();
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/patients", patientRoutes);
-app.use("/api/diet-charts", dietChartRoutes);
 app.use("/api/deliveries", deliveryRoutes);
 app.use('/api/users', userRoutes); 
 

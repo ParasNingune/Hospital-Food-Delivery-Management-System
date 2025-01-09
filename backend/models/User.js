@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: ["admin", "pantry", "delivery"],
-    default: "admin", // Default role for hospital food manager
+    default: "admin",
   },
 }, { timestamps: true });
 

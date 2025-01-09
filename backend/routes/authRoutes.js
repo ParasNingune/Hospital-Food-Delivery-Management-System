@@ -4,7 +4,6 @@ const { registerUser, loginUser } = require("../controllers/authController");
 
 const router = express.Router();
 
-// Register Route
 router.post(
   "/register",
   [
@@ -15,7 +14,6 @@ router.post(
   registerUser
 );
 
-// Login Route
 router.post(
   "/login",
   [

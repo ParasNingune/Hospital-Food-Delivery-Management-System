@@ -28,7 +28,7 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
-import { FaUsers, FaRegUserCircle, FaClipboardList, FaTrashAlt } from "react-icons/fa";
+import { FaClipboardList, FaTrashAlt } from "react-icons/fa";
 import AdminDashboardSidebar from "./AdminDashboardSidebar";
 
 const UsersPage = () => {
@@ -40,7 +40,7 @@ const UsersPage = () => {
   const [totalActiveUsers, setTotalActiveUsers] = useState(0);
   const [selectedUser, setSelectedUser] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const toast = useToast();  // Toast notification
+  const toast = useToast();
 
   // Fetch Users Data
   useEffect(() => {
@@ -74,11 +74,10 @@ const UsersPage = () => {
   const handleDeleteUser = async (userId) => {
     try {
       await axios.delete(`http://localhost:5000/api/users/${userId}`);
-      // Remove user from the list after successful deletion
       setUsers(users.filter(user => user._id !== userId));
       setTotalUsers(totalUsers - 1);
       setTotalActiveUsers(users.filter(user => user.status === "Active").length);
-      closeModal(); // Close the modal after deleting
+      closeModal();
       toast({
         title: "User deleted.",
         description: "The user has been removed from the system.",
@@ -100,9 +99,9 @@ const UsersPage = () => {
 
   const capitalizeWords = (str) => {
     return str
-      .split(" ") // Split the string into words
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize each word
-      .join(" "); // Rejoin the words into a single string
+      .split(" ")
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
   };
 
   return (
@@ -138,7 +137,7 @@ const UsersPage = () => {
                       colorScheme="teal"
                       aria-label="View User"
                       icon={<FaClipboardList />}
-                      onClick={() => openModal(user)} // Open modal with user details
+                      onClick={() => openModal(user)}
                     />
                   </Td>
                 </Tr>
@@ -187,7 +186,7 @@ const UsersPage = () => {
               <ChakraButton
                 colorScheme="red"
                 mr={3}
-                onClick={() => handleDeleteUser(selectedUser._id)} // Delete user
+                onClick={() => handleDeleteUser(selectedUser._id)}
               >
                 <FaTrashAlt style={{ marginRight: "8px" }} />
                 Delete User

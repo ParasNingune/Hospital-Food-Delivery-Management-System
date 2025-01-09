@@ -135,7 +135,6 @@ const AllOrders = () => {
       // Add the new order
       await axios.post("http://localhost:5000/api/deliveries", newOrderData);
 
-      // Re-fetch orders to include the new order
       fetchOrdersAndPatients();
 
       // Close the modal

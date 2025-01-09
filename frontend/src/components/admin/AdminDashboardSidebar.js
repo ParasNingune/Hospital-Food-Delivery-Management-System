@@ -18,7 +18,7 @@ const AdminDashboardSidebar = () => {
   return (
     <Box
       width="220px"
-      bg="gray.300" // Subtle background color
+      bg="gray.300"
       color="gray.800"
       p={6}
       boxShadow="2xl"
@@ -26,7 +26,7 @@ const AdminDashboardSidebar = () => {
       display="flex"
       flexDirection="column"
       justifyContent="space-between"
-      borderRight="1px solid #E2E8F0" // Subtle border for separation
+      borderRight="1px solid #E2E8F0"
     >
       <Box>
         {/* Logo and Heading */}

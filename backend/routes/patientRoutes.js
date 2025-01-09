@@ -1,5 +1,4 @@
 const express = require("express");
-const { authMiddleware, roleMiddleware } = require("../middlewares/authMiddleware");
 const {
   createPatient,
   getAllPatients,
@@ -9,9 +8,6 @@ const {
 } = require("../controllers/patientController");
 
 const router = express.Router();
-
-// Only allow "admin" role to access these routes
-// router.use(authMiddleware, roleMiddleware("admin"));
 
 // CRUD operations
 router.post("/", createPatient);

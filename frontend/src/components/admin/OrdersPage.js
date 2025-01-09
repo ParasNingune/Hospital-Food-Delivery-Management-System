@@ -27,11 +27,11 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { FaClipboardList } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import AdminDashboardSidebar from "./AdminDashboardSidebar";
 
 const OrdersPage = () => {
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
 
   const bgColor = useColorModeValue("gray.100", "gray.700");
   const cardColor = useColorModeValue("white", "gray.800");
@@ -105,7 +105,7 @@ const OrdersPage = () => {
   const handleNewOrderChange = (e, index = null) => {
     const { name, value } = e.target;
     if (name === "patientId") {
-      console.log("Patient ID selected:", value);  // Add this to check
+      console.log("Patient ID selected:", value);
     }
     if (index !== null) {
       const updatedItems = [...newOrderData.foodItems];
@@ -140,7 +140,7 @@ const OrdersPage = () => {
       await axios.post("http://localhost:5000/api/deliveries", newOrderData);
   
       // After success, navigate to the orders page
-      navigate("/orders"); // Replace '/orders' with your actual orders page path
+      navigate("/orders");
   
       // Close the modal
       closeAddOrderModal();
@@ -279,7 +279,7 @@ const OrdersPage = () => {
                 value={newOrderData.patientId}
                 onChange={handleNewOrderChange}
               >
-                <option value="">Select a Person</option> {/* Default option */}
+                <option value="">Select a Person</option>
                 {patients.map((patient) => (
                   <option key={patient._id} value={patient._id}>
                     {patient.name}

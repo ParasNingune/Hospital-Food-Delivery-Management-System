@@ -1,6 +1,5 @@
 const Patient = require("../models/Patient");
 
-// Create a new patient
 exports.createPatient = async (req, res) => {
   try {
     const patient = new Patient(req.body);
@@ -11,7 +10,6 @@ exports.createPatient = async (req, res) => {
   }
 };
 
-// Get all patients
 exports.getAllPatients = async (req, res) => {
   try {
     const patients = await Patient.find();
@@ -21,7 +19,6 @@ exports.getAllPatients = async (req, res) => {
   }
 };
 
-// Get a single patient by ID
 exports.getPatientById = async (req, res) => {
   try {
     const patient = await Patient.findById(req.params.id);
@@ -34,7 +31,6 @@ exports.getPatientById = async (req, res) => {
   }
 };
 
-// Update a patient's details
 exports.updatePatient = async (req, res) => {
   try {
     const patient = await Patient.findByIdAndUpdate(req.params.id, req.body, {
@@ -50,7 +46,6 @@ exports.updatePatient = async (req, res) => {
   }
 };
 
-// Delete a patient
 exports.deletePatient = async (req, res) => {
   try {
     const patient = await Patient.findByIdAndDelete(req.params.id);

@@ -62,14 +62,12 @@ const AdminDashboard = () => {
           return { ...order, patientName: patient ? patient.name : "Unknown" };
         });
 
-        // Sort orders by the createdAt field in descending order
         const sortedOrders = updatedOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
         setOrders(sortedOrders);
         setTotalOrders(sortedOrders.length);
         setTotalPendingOrders(sortedOrders.filter((order) => order.status !== "Delivered").length);
 
-        // Generate the visualization data
         const monthlyOrderCount = {};
         sortedOrders.forEach((order) => {
           const orderMonth = new Date(order.deliveryTime).toLocaleString("default", { month: "short" });
@@ -131,7 +129,6 @@ const AdminDashboard = () => {
     setSelectedOrder(null);
   };
 
-  // Prepare recent orders for display (limit to 5)
   const recentOrders = orders.slice(0, 5);
 
   return (

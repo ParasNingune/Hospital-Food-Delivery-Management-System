@@ -135,7 +135,6 @@ const AllOrders = () => {
       // Add the new order
       await axios.post("http://localhost:5000/api/deliveries", newOrderData);
 
-      // Re-fetch orders to include the new order
       fetchOrdersAndPatients();
 
       // Close the modal
@@ -191,7 +190,7 @@ const AllOrders = () => {
                       colorScheme="teal"
                       aria-label="View Order"
                       icon={<FaClipboardList />}
-                      onClick={() => openModal(order)} // Open modal with order details
+                      onClick={() => openModal(order)} 
                     />
                   </Td>
                 </Tr>

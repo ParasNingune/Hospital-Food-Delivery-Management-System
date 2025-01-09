@@ -57,7 +57,7 @@ const PantryDashboard = () => {
           return { ...order, patientName: patient ? patient.name : "Unknown" };
         });
 
-        // Filter only pending orders
+        // Filter only delivered orders
         const filteredOrders = updatedOrders.filter((order) => order.status !== "Delivered");
         setTotalOrders(orders);
         setPendingOrders(filteredOrders);

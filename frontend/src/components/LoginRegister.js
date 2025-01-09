@@ -72,7 +72,7 @@ const LoginRegister = () => {
 
   return (
     <Box
-      bgGradient="linear(to-r, teal.50, blue.50)" // Modern gradient background
+      bgGradient="linear(to-r, teal.50, blue.50)"
       minHeight="100vh"
       display="flex"
       alignItems="center"
