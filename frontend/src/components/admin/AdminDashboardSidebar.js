@@ -12,7 +12,7 @@ const AdminDashboardSidebar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/login-register");
+    navigate("/");
   };
 
   return (

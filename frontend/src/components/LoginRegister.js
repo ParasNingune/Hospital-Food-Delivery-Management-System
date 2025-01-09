@@ -15,6 +15,8 @@ import {
   Tabs,
   useToast,
   Select,
+  Text,
+  Divider,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -31,14 +33,12 @@ const LoginRegister = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post("http://localhost:5000/api/auth/login", {
         email,
         password,
       });
       if (response.status === 200) {
-        // Redirect user based on role
         navigate(`/${response.data.role.toLowerCase()}-dashboard`);
       }
     } catch (err) {
@@ -48,7 +48,6 @@ const LoginRegister = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post("http://localhost:5000/api/auth/register", {
         name,
@@ -64,7 +63,7 @@ const LoginRegister = () => {
           duration: 3000,
           isClosable: true,
         });
-        setIsRegistering(false); // Switch to login tab
+        setIsRegistering(false);
       }
     } catch (err) {
       setError(err.response.data.message || "Error registering user");
@@ -72,30 +71,51 @@ const LoginRegister = () => {
   };
 
   return (
-    <Box maxWidth="400px" mx="auto" mt="50px">
-      {/* Toggle Buttons */}
-      <Tabs variant="soft-rounded" isLazy>
-        <TabList mb={4}>
-          <Tab width="full" onClick={() => setIsRegistering(false)}>
-            Login
-          </Tab>
-          <Tab width="full" onClick={() => setIsRegistering(true)}>
-            Register
-          </Tab>
-        </TabList>
-
-        <TabPanels>
-          <TabPanel>
-            {/* Login Form */}
-            <Box
-              p={5}
-              borderWidth={1}
-              borderRadius="md"
-              boxShadow="lg"
+    <Box
+      bgGradient="linear(to-r, teal.50, blue.50)" // Modern gradient background
+      minHeight="100vh"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Box
+        maxWidth="450px"
+        width="100%"
+        p={8}
+        bg="white"
+        borderRadius="lg"
+        boxShadow="2xl"
+      >
+        <Tabs variant="soft-rounded" isLazy>
+          {/* Tab Buttons */}
+          <TabList mb={6}>
+            <Tab
+              width="50%"
+              _selected={{ color: "white", bg: "teal.400" }}
+              _hover={{ bg: "teal.100" }}
+              onClick={() => setIsRegistering(false)}
             >
-              <Heading mb={4} textAlign="center">
-                Login
+              Login
+            </Tab>
+            <Tab
+              width="50%"
+              _selected={{ color: "white", bg: "teal.400" }}
+              _hover={{ bg: "teal.100" }}
+              onClick={() => setIsRegistering(true)}
+            >
+              Register
+            </Tab>
+          </TabList>
+
+          <TabPanels>
+            {/* Login Panel */}
+            <TabPanel>
+              <Heading mb={4} textAlign="center" color="teal.500">
+                Welcome Back
               </Heading>
+              <Text mb={6} textAlign="center" color="gray.600">
+                Enter your credentials to access the dashboard
+              </Text>
               <form onSubmit={handleLogin}>
                 <Stack spacing={4}>
                   <FormControl id="email" isRequired>
@@ -107,7 +127,6 @@ const LoginRegister = () => {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </FormControl>
-
                   <FormControl id="password" isRequired>
                     <FormLabel>Password</FormLabel>
                     <Input
@@ -117,28 +136,27 @@ const LoginRegister = () => {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </FormControl>
-
                   {error && <FormErrorMessage>{error}</FormErrorMessage>}
-
-                  <Button type="submit" colorScheme="teal" size="lg" width="full">
+                  <Button
+                    type="submit"
+                    colorScheme="teal"
+                    size="lg"
+                    width="full"
+                  >
                     Login
                   </Button>
                 </Stack>
               </form>
-            </Box>
-          </TabPanel>
+            </TabPanel>
 
-          <TabPanel>
-            {/* Register Form */}
-            <Box
-              p={5}
-              borderWidth={1}
-              borderRadius="md"
-              boxShadow="lg"
-            >
-              <Heading mb={4} textAlign="center">
-                Register
+            {/* Register Panel */}
+            <TabPanel>
+              <Heading mb={4} textAlign="center" color="teal.500">
+                Create an Account
               </Heading>
+              <Text mb={6} textAlign="center" color="gray.600">
+                Fill the form to register
+              </Text>
               <form onSubmit={handleRegister}>
                 <Stack spacing={4}>
                   <FormControl id="name" isRequired>
@@ -150,7 +168,6 @@ const LoginRegister = () => {
                       onChange={(e) => setName(e.target.value)}
                     />
                   </FormControl>
-
                   <FormControl id="email" isRequired>
                     <FormLabel>Email</FormLabel>
                     <Input
@@ -160,7 +177,6 @@ const LoginRegister = () => {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </FormControl>
-
                   <FormControl id="password" isRequired>
                     <FormLabel>Password</FormLabel>
                     <Input
@@ -170,8 +186,6 @@ const LoginRegister = () => {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </FormControl>
-
-                  {/* Role Dropdown */}
                   <FormControl id="role" isRequired>
                     <FormLabel>Role</FormLabel>
                     <Select
@@ -184,18 +198,21 @@ const LoginRegister = () => {
                       <option value="delivery">Delivery</option>
                     </Select>
                   </FormControl>
-
                   {error && <FormErrorMessage>{error}</FormErrorMessage>}
-
-                  <Button type="submit" colorScheme="teal" size="lg" width="full">
+                  <Button
+                    type="submit"
+                    colorScheme="teal"
+                    size="lg"
+                    width="full"
+                  >
                     Register
                   </Button>
                 </Stack>
               </form>
-            </Box>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Box>
     </Box>
   );
 };
