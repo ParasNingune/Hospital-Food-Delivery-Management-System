@@ -142,7 +142,7 @@ const AdminDashboard = () => {
       {/* Main Content */}
       <Box flex="1" p={6} overflowY="auto">
         <Heading size="lg" mb={6}>
-          Welcome, Admin
+          Welcome to Admin Dashboard
         </Heading>
 
         {/* Summary Cards */}
