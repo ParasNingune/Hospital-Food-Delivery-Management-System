@@ -9,6 +9,8 @@ import UsersPage from "./components/admin/UsersPage";
 import OrdersPage from "./components/admin/OrdersPage";
 import StaffPage from "./components/pantry/StaffPage";
 import AllOrders from "./components/pantry/PendingOrders";
+import AllDelivery from "./components/delivery/AllDelivery";
+import PendingDelivery from "./components/delivery/PendingDelivery";
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
           <Route path="/pantry-staff" element={<StaffPage />} />
           <Route path="/orders" element={<OrdersPage /> } />
           <Route path="/all-orders" element={<AllOrders />} />
+          <Route path="/all-deliveries" element={<AllDelivery />} />
+          <Route path="/pending-deliveries" element={<PendingDelivery />} />
         </Routes>
       </Router>
     </ChakraProvider>

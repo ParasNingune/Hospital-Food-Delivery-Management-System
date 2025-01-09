@@ -114,7 +114,7 @@ const LoginRegister = () => {
                 Welcome Back
               </Heading>
               <Text mb={6} textAlign="center" color="gray.600">
-                Enter your credentials to access the dashboard
+                Enter the credentials provided to access the dashboard
               </Text>
               <form onSubmit={handleLogin}>
                 <Stack spacing={4}>
