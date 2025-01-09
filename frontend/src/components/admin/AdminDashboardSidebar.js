@@ -1,88 +1,119 @@
 import React from "react";
-import { Box, Button, Heading, Text, Flex } from "@chakra-ui/react";
-import { FaUsers, FaClipboardList, FaTruck, FaChartBar } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+import { Box, Button, Heading, Text, Flex, Divider, Icon } from "@chakra-ui/react";
+import { FaUsers, FaClipboardList, FaChartBar, FaSignOutAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboardSidebar = () => {
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
 
-  // Handle navigation on button click
   const handleNavigation = (route) => {
     navigate(route);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login-register");
+  };
+
   return (
     <Box
-      width="250px"
-      bg="teal.600"
-      color="white"
-      p={5}
+      width="220px"
+      bg="gray.300" // Subtle background color
+      color="gray.800"
+      p={6}
+      boxShadow="2xl"
+      height="100vh"
       display="flex"
       flexDirection="column"
       justifyContent="space-between"
-      boxShadow="xl"
-      height="100vh"
+      borderRight="1px solid #E2E8F0" // Subtle border for separation
     >
       <Box>
-        <Heading size="lg" mb={6} textAlign="center" fontWeight="bold" letterSpacing="wider">
+        {/* Logo and Heading */}
+        <Heading
+          size="lg"
+          mb={8}
+          textAlign="center"
+          fontWeight="extrabold"
+          letterSpacing="widest"
+          color="teal.600"
+        >
           Admin Panel
         </Heading>
 
+        <Divider mb={6} borderColor="gray.300" />
+
+        {/* Navigation Buttons */}
         <Flex direction="column" gap={4}>
-          {/* Dashboard Button */}
           <Button
             variant="ghost"
-            colorScheme="teal"
             justifyContent="start"
-            _hover={{ bg: "teal.500", color: "white" }} // Ensure button text is white on hover
+            _hover={{ bg: "teal.100", color: "teal.700" }}
             onClick={() => handleNavigation("/admin-dashboard")}
-            leftIcon={<FaChartBar />}
+            leftIcon={<Icon as={FaChartBar} />}
             fontSize="lg"
             fontWeight="medium"
+            px={6}
+            py={4}
             borderRadius="md"
-            color="white" // Button text color
           >
             Dashboard
           </Button>
 
-          {/* Users Button */}
           <Button
             variant="ghost"
-            colorScheme="teal"
             justifyContent="start"
-            _hover={{ bg: "teal.500", color: "white" }} // Ensure button text is white on hover
+            _hover={{ bg: "teal.100", color: "teal.700" }}
             onClick={() => handleNavigation("/users")}
-            leftIcon={<FaUsers />}
+            leftIcon={<Icon as={FaUsers} />}
             fontSize="lg"
             fontWeight="medium"
+            px={6}
+            py={4}
             borderRadius="md"
-            color="white" // Button text color
           >
             Users
           </Button>
 
-          {/* Orders Button */}
           <Button
             variant="ghost"
-            colorScheme="teal"
             justifyContent="start"
-            _hover={{ bg: "teal.500", color: "white" }} // Ensure button text is white on hover
+            _hover={{ bg: "teal.100", color: "teal.700" }}
             onClick={() => handleNavigation("/orders")}
-            leftIcon={<FaClipboardList />}
+            leftIcon={<Icon as={FaClipboardList} />}
             fontSize="lg"
             fontWeight="medium"
+            px={6}
+            py={4}
             borderRadius="md"
-            color="white" // Button text color
           >
             Orders
+          </Button>
+
+          <Button
+            variant="ghost"
+            justifyContent="start"
+            _hover={{ bg: "red.100", color: "red.600" }}
+            onClick={handleLogout}
+            leftIcon={<Icon as={FaSignOutAlt} />}
+            fontSize="lg"
+            fontWeight="medium"
+            px={6}
+            py={4}
+            borderRadius="md"
+          >
+            Logout
           </Button>
         </Flex>
       </Box>
 
       {/* Footer */}
-      <Text textAlign="center" mt={6} fontSize="sm" opacity={0.7}>
-        © 2025 Hospital Management
-      </Text>
+      <Box textAlign="center" mt={8}>
+        <Divider mb={4} borderColor="gray.300" />
+        <Text fontSize="xs" color="gray.500">
+          © 2025 Hospital Management
+        </Text>
+      </Box>
     </Box>
   );
 };
